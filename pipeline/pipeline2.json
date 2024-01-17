@@ -46,7 +46,7 @@
 						"referenceName": "DelimitedText1",
 						"type": "DatasetReference",
 						"parameters": {
-							"fileName": "''"
+							"fileName": "demo_file.csv"
 						}
 					}
 				],
