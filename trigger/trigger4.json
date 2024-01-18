@@ -1,0 +1,28 @@
+{
+	"name": "trigger4",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Tumbling windows",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"start": "''",
+					"end": "''"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2024-01-18T10:34:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
