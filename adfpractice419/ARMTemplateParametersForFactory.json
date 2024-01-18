@@ -13,6 +13,12 @@
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://srcfilesstorage.dfs.core.windows.net/"
+		},
+		"trigger2_properties_pipeline3_parameters_trigger_fileName": {
+			"value": "@triggerBody().fileName"
+		},
+		"trigger2_properties_typeProperties_scope": {
+			"value": "/subscriptions/b33730e2-72a0-4c30-b83c-da75d34c9bd2/resourceGroups/Azure-sample-rg/providers/Microsoft.Storage/storageAccounts/srcfilesstorage"
 		}
 	}
 }

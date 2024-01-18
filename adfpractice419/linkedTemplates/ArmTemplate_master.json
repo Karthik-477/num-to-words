@@ -19,6 +19,14 @@
 			"type": "string",
 			"defaultValue": "https://srcfilesstorage.dfs.core.windows.net/"
 		},
+		"trigger2_properties_pipeline3_parameters_trigger_fileName": {
+			"type": "string",
+			"defaultValue": "@triggerBody().fileName"
+		},
+		"trigger2_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/b33730e2-72a0-4c30-b83c-da75d34c9bd2/resourceGroups/Azure-sample-rg/providers/Microsoft.Storage/storageAccounts/srcfilesstorage"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -54,6 +62,12 @@
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"trigger2_properties_pipeline3_parameters_trigger_fileName": {
+						"value": "[parameters('trigger2_properties_pipeline3_parameters_trigger_fileName')]"
+					},
+					"trigger2_properties_typeProperties_scope": {
+						"value": "[parameters('trigger2_properties_typeProperties_scope')]"
 					}
 				}
 			},
