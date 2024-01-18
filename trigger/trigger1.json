@@ -16,7 +16,7 @@
 			"recurrence": {
 				"frequency": "Minute",
 				"interval": 15,
-				"startTime": "2024-01-18T22:20:00",
+				"startTime": "2024-01-18T07:53:00",
 				"endTime": "2024-01-18T15:22:00",
 				"timeZone": "Dateline Standard Time"
 			}
