@@ -27,6 +27,14 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/b33730e2-72a0-4c30-b83c-da75d34c9bd2/resourceGroups/Azure-sample-rg/providers/Microsoft.Storage/storageAccounts/srcfilesstorage"
 		},
+		"trigger3_properties_pipeline_parameters_start": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowStartTime"
+		},
+		"trigger3_properties_pipeline_parameters_end": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowEndTime"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -62,6 +70,12 @@
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"trigger3_properties_pipeline_parameters_start": {
+						"value": "[parameters('trigger3_properties_pipeline_parameters_start')]"
+					},
+					"trigger3_properties_pipeline_parameters_end": {
+						"value": "[parameters('trigger3_properties_pipeline_parameters_end')]"
 					},
 					"trigger2_properties_EventBased_parameters_trigger_fileName": {
 						"value": "[parameters('trigger2_properties_EventBased_parameters_trigger_fileName')]"

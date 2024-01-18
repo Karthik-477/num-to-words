@@ -19,6 +19,12 @@
 		},
 		"trigger2_properties_typeProperties_scope": {
 			"value": "/subscriptions/b33730e2-72a0-4c30-b83c-da75d34c9bd2/resourceGroups/Azure-sample-rg/providers/Microsoft.Storage/storageAccounts/srcfilesstorage"
+		},
+		"trigger3_properties_pipeline_parameters_start": {
+			"value": "@trigger().outputs.windowStartTime"
+		},
+		"trigger3_properties_pipeline_parameters_end": {
+			"value": "@trigger().outputs.windowEndTime"
 		}
 	}
 }
