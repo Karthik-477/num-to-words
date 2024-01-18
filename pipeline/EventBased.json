@@ -1,5 +1,5 @@
 {
-	"name": "pipeline3",
+	"name": "EventBased",
 	"properties": {
 		"activities": [
 			{
@@ -79,6 +79,14 @@
 		"parameters": {
 			"trigger_fileName": {
 				"type": "string"
+			}
+		},
+		"variables": {
+			"startdate": {
+				"type": "String"
+			},
+			"enddate": {
+				"type": "String"
 			}
 		},
 		"annotations": []
