@@ -16,9 +16,9 @@
 			"recurrence": {
 				"frequency": "Minute",
 				"interval": 15,
-				"startTime": "2024-01-18T07:53:00",
+				"startTime": "2024-01-18T08:05:00",
 				"endTime": "2024-01-18T15:22:00",
-				"timeZone": "Dateline Standard Time"
+				"timeZone": "India Standard Time"
 			}
 		}
 	}
