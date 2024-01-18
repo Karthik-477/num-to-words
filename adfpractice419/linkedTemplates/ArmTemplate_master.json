@@ -19,7 +19,7 @@
 			"type": "string",
 			"defaultValue": "https://srcfilesstorage.dfs.core.windows.net/"
 		},
-		"trigger2_properties_pipeline3_parameters_trigger_fileName": {
+		"trigger2_properties_EventBased_parameters_trigger_fileName": {
 			"type": "string",
 			"defaultValue": "@triggerBody().fileName"
 		},
@@ -63,8 +63,8 @@
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
-					"trigger2_properties_pipeline3_parameters_trigger_fileName": {
-						"value": "[parameters('trigger2_properties_pipeline3_parameters_trigger_fileName')]"
+					"trigger2_properties_EventBased_parameters_trigger_fileName": {
+						"value": "[parameters('trigger2_properties_EventBased_parameters_trigger_fileName')]"
 					},
 					"trigger2_properties_typeProperties_scope": {
 						"value": "[parameters('trigger2_properties_typeProperties_scope')]"

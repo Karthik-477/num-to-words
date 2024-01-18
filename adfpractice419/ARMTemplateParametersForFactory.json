@@ -14,7 +14,7 @@
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://srcfilesstorage.dfs.core.windows.net/"
 		},
-		"trigger2_properties_pipeline3_parameters_trigger_fileName": {
+		"trigger2_properties_EventBased_parameters_trigger_fileName": {
 			"value": "@triggerBody().fileName"
 		},
 		"trigger2_properties_typeProperties_scope": {
