@@ -13,7 +13,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "raw/@{'input'}/@{pipeline().parameters.trigger_fileName}"
+					},
+					{
+						"name": "Destination",
+						"value": "raw/@{'output'}/@{pipeline().parameters.trigger_fileName}"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
