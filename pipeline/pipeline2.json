@@ -1,0 +1,58 @@
+{
+	"name": "pipeline2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "startdate",
+					"value": {
+						"value": "@pipeline().parameters.start",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "enddate",
+					"value": {
+						"value": "@pipeline().parameters.end",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"start": {
+				"type": "string"
+			},
+			"end": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"startdate": {
+				"type": "String"
+			},
+			"enddate": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
