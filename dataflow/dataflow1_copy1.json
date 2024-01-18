@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "dataflow1_copy1",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -23,15 +23,15 @@
 			],
 			"transformations": [
 				{
-					"name": "aggregate1"
+					"name": "window1"
 				},
 				{
-					"name": "pivot1"
+					"name": "rank1"
 				}
 			],
 			"scriptLines": [
 				"source(output(",
-				"          id as string,",
+				"          id as integer,",
 				"          first_name as string,",
 				"          last_name as string,",
 				"          email as string,",
@@ -41,24 +41,14 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 aggregate(groupBy(id,",
-				"          first_name,",
-				"          last_name,",
-				"          email,",
-				"          gender,",
-				"          ip_address),",
-				"     counts = count()) ~> aggregate1",
-				"aggregate1 pivot(groupBy(id,",
-				"          first_name,",
-				"          last_name,",
-				"          email,",
-				"          ip_address,",
-				"          counts),",
-				"     pivotBy(gender),",
-				"     {} = count(id),",
-				"     columnNaming: '$N$V',",
-				"     lateral: true) ~> pivot1",
-				"pivot1 sink(allowSchemaDrift: true,",
+				"source1 window(over(id),",
+				"     asc(id, true),",
+				"     startRowOffset: 3L,",
+				"     count = count(id)) ~> window1",
+				"window1 rank(asc(id, true),",
+				"     output(rank as long),",
+				"     dense: true) ~> rank1",
+				"rank1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
@@ -70,7 +60,7 @@
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
-				"          id,",
+				"          id = rank,",
 				"          first_name,",
 				"          last_name,",
 				"          email,",

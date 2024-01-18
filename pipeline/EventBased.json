@@ -98,6 +98,8 @@
 				"type": "String"
 			}
 		},
-		"annotations": []
+		"annotations": [
+			"eventAnnotation"
+		]
 	}
 }

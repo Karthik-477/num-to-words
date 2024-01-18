@@ -1,0 +1,73 @@
+{
+	"name": "df_flatten",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "flatten1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          array_1 as string[],",
+				"          array_2 as (age as short, name as string, nested_array as string[])[],",
+				"          array_3 as (kjfvb as string, nested_object_array as (dfvfv as string, kjvbf as string)[], sdkvhsfv as string)[],",
+				"          array_4 as (object as (array_4 as (arere as string, asvrv as string)[]), sdvdv as string)[],",
+				"          goods as (customers as string[], orders as (orderId as short, orderTotal as double, shipped as (orderItems as (itemName as string, itemQty as short)[]))[], trade as boolean),",
+				"          location as string,",
+				"          name as string,",
+				"          satellites as string[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     inferDriftedColumnTypes: true,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> source1",
+				"source1 foldDown(unrollMultiple(array_3,array_3.nested_object_array),",
+				"     mapColumn(",
+				"          array_3 = array_3",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1",
+				"flatten1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          id,",
+				"          first_name,",
+				"          last_name,",
+				"          email,",
+				"          ip_address,",
+				"          counts",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

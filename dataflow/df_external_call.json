@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "df_external_call",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -23,15 +23,16 @@
 			],
 			"transformations": [
 				{
-					"name": "aggregate1"
-				},
-				{
-					"name": "pivot1"
+					"name": "externalCall1",
+					"linkedService": {
+						"referenceName": "RestService1",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"scriptLines": [
 				"source(output(",
-				"          id as string,",
+				"          id as integer,",
 				"          first_name as string,",
 				"          last_name as string,",
 				"          email as string,",
@@ -41,24 +42,29 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 aggregate(groupBy(id,",
-				"          first_name,",
-				"          last_name,",
-				"          email,",
-				"          gender,",
-				"          ip_address),",
-				"     counts = count()) ~> aggregate1",
-				"aggregate1 pivot(groupBy(id,",
-				"          first_name,",
-				"          last_name,",
-				"          email,",
-				"          ip_address,",
-				"          counts),",
-				"     pivotBy(gender),",
-				"     {} = count(id),",
-				"     columnNaming: '$N$V',",
-				"     lateral: true) ~> pivot1",
-				"pivot1 sink(allowSchemaDrift: true,",
+				"source1 call(mapColumn(",
+				"          each(match(/* All input columns */ true()),",
+				"               /* Input name */ $$ = $$)",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     output(",
+				"          headers as [string,string],",
+				"          status as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     format: 'rest',",
+				"     store: 'restservice',",
+				"     timeout: 30,",
+				"     requestInterval: 0,",
+				"     httpMethod: 'GET',",
+				"     headerColumnName: 'headers',",
+				"     bodyColumnName: 'body',",
+				"     statusColumnName: 'status',",
+				"     addResponseCode: true,",
+				"     requestFormat: ['type' -> 'json'],",
+				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> externalCall1",
+				"externalCall1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
@@ -70,7 +76,7 @@
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
-				"          id,",
+				"          id = rank,",
 				"          first_name,",
 				"          last_name,",
 				"          email,",
